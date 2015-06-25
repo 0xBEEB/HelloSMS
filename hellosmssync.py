@@ -12,8 +12,8 @@ def hello_sms():
     response = ""
     if not smssyncClient.validate_message(message):
         response = smssyncClient.respond_error("Incorrect secret")
-    if message.to is not None and len(messages.to) > 0:
-        response = smssyncClient.respond_success_with_message(message.to, "Hello, World!")
+    if message.from_number is not None and len(message.from_number) > 0:
+        response = smssyncClient.respond_success_with_message(message.from_number, "Hello, World!")
     else:
         response = smsClient.respond_error("Could not read incoming number")
     return str(response)
